@@ -1,11 +1,16 @@
+from dotenv import load_dotenv
 import streamlit as st
-from langchain.llms import LLM
+from langchain_community.llms import GoogleLAMDA
+import google.generativeai as ggi
+import os
 
-# Replace with your Gemini API key
-API_KEY = "YOUR_API_KEY"
+load_dotenv(".env")
+
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# ggi.configure(api_key = GOOGLE_API_KEY)
 
 # Initialize LangChain LLM client with your API key
-llm = LLM(model_name="google/laMDA", api_key=API_KEY)
+llm = GoogleLAMDA(api_key=GOOGLE_API_KEY)
 
 # Conversation history (list of strings)
 chat_history = []
